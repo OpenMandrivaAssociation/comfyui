@@ -1,0 +1,49 @@
+# Distro extra model paths. User trees win if they also add a
+# ~/.config/comfyui/extra_model_paths.yaml and pass it on the
+# command line.
+#
+# The systemd-style locations match llama/sd.cpp: /srv/ai is the
+# suggested public model tree. /media/space/ai is this machine's
+# existing store (ignored if the directory is missing).
+
+omv:
+    base_path: /srv/ai
+    is_default: true
+    checkpoints: .
+    configs: .
+    loras: .
+    vae: VAE/
+    text_encoders: |
+        .
+        text_encoders/
+        clip/
+    diffusion_models: |
+        .
+        unet/
+        diffusion_models/
+    clip_vision: clip_vision/
+    embeddings: embeddings/
+    controlnet: controlnet/
+    upscale_models: upscale_models/
+    hypernetworks: hypernetworks/
+    photomaker: photomaker/
+    audio_encoders: audio_encoders/
+
+space:
+    base_path: /media/space/ai
+    checkpoints: .
+    configs: .
+    loras: .
+    vae: VAE/
+    text_encoders: |
+        .
+        text_encoders/
+        clip/
+    diffusion_models: |
+        .
+        unet/
+        diffusion_models/
+    clip_vision: clip_vision/
+    embeddings: embeddings/
+    controlnet: controlnet/
+    upscale_models: upscale_models/
