@@ -2,7 +2,7 @@
 
 Name:		comfyui
 Version:	0.34.5
-Release:	1
+Release:	2
 Summary:	Modular diffusion model GUI, API and backend
 License:	GPL-3.0
 Group:		Sciences/Other
@@ -87,6 +87,7 @@ find %{buildroot}%{_datadir}/comfyui -type d -name 'tests' -exec rm -rf {} + 2>/
 
 install -d %{buildroot}%{_sysconfdir}/comfyui
 install -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/comfyui/extra_model_paths.yaml
+install -d %{buildroot}%{_datadir}/comfyui-custom-nodes
 
 install -d %{buildroot}%{_bindir}
 cat > %{buildroot}%{_bindir}/comfyui <<'EOF'
@@ -96,6 +97,19 @@ LIBDIR=%{_datadir}/comfyui
 BASE="${COMFYUI_BASE_DIRECTORY:-${XDG_DATA_HOME:-$HOME/.local/share}/comfyui}"
 mkdir -p "$BASE/output" "$BASE/input" "$BASE/temp" "$BASE/user" \
 	"$BASE/custom_nodes" "$BASE/models"
+# Distro custom-node packages live under /usr/share/comfyui-custom-nodes.
+# Symlink them into the per-user tree unless the user already has a
+# real checkout of the same name.
+SYS_NODES="%{_datadir}/comfyui-custom-nodes"
+if [ -d "$SYS_NODES" ]; then
+	for n in "$SYS_NODES"/*; do
+		[ -e "$n" ] || continue
+		dest="$BASE/custom_nodes/$(basename "$n")"
+		if [ -L "$dest" ] || [ ! -e "$dest" ]; then
+			ln -sfn "$n" "$dest"
+		fi
+	done
+fi
 export PYTHONPATH="$LIBDIR${PYTHONPATH:+:$PYTHONPATH}"
 export PYTHONDONTWRITEBYTECODE=1
 EXTRA="%{_sysconfdir}/comfyui/extra_model_paths.yaml"
@@ -117,5 +131,6 @@ sed -i '1s|^#!/usr/bin/env python3|#!/usr/bin/python|' \
 %doc README.md QUANTIZATION.md
 %{_bindir}/comfyui
 %{_datadir}/comfyui/
+%dir %{_datadir}/comfyui-custom-nodes
 %config(noreplace) %{_sysconfdir}/comfyui/extra_model_paths.yaml
 %dir %{_sysconfdir}/comfyui
