@@ -2,7 +2,7 @@
 
 Name:		comfyui
 Version:	0.39.2
-Release:	1
+Release:	2
 Summary:	Modular diffusion model GUI, API and backend
 License:	GPL-3.0
 Group:		Sciences/Other
