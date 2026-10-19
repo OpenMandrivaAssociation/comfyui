@@ -1,7 +1,7 @@
 # ComfyUI: node-graph diffusion GUI. Models stay outside the package.
 
 Name:		comfyui
-Version:	0.41.3
+Version:	0.42.1
 Release:	1
 Summary:	Modular diffusion model GUI, API and backend
 License:	GPL-3.0
