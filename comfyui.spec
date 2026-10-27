@@ -1,7 +1,7 @@
 # ComfyUI: node-graph diffusion GUI. Models stay outside the package.
 
 Name:		comfyui
-Version:	0.42.5
+Version:	0.43.0
 Release:	1
 Summary:	Modular diffusion model GUI, API and backend
 License:	GPL-3.0
@@ -78,9 +78,9 @@ for d in alembic_db api_server app blueprints comfy comfy_api \
 	cp -a "$d" %{buildroot}%{_datadir}/comfyui/
 done
 install -m 644 alembic.ini comfyui_version.py cuda_malloc.py \
-	execution.py folder_paths.py hook_breaker_ac10a0.py \
-	latent_preview.py main.py node_helpers.py nodes.py \
-	protocol.py server.py \
+	default_workflow.json execution.py folder_paths.py \
+	hook_breaker_ac10a0.py latent_preview.py main.py \
+	node_helpers.py nodes.py protocol.py server.py \
 	%{buildroot}%{_datadir}/comfyui/
 find %{buildroot}%{_datadir}/comfyui -type d -name '__pycache__' -exec rm -rf {} + 2>/dev/null || true
 find %{buildroot}%{_datadir}/comfyui -type d -name 'tests' -exec rm -rf {} + 2>/dev/null || true
