@@ -2,7 +2,7 @@
 
 Name:		comfyui
 Version:	0.44.0
-Release:	1
+Release:	2
 Summary:	Modular diffusion model GUI, API and backend
 License:	GPL-3.0
 Group:		Sciences/Other
@@ -40,6 +40,7 @@ Requires:	python%{pyver}dist(comfy-aimdo)
 Requires:	python%{pyver}dist(comfy-kitchen)
 Requires:	python%{pyver}dist(comfyui-frontend-package)
 Recommends:	python%{pyver}dist(comfyui-embedded-docs)
+Recommends:	python%{pyver}dist(comfyui-workflow-templates)
 Recommends:	python%{pyver}dist(spandrel)
 Recommends:	python%{pyver}dist(pydantic)
 Recommends:	python%{pyver}dist(pydantic-settings)
