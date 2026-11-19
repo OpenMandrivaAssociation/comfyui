@@ -41,6 +41,8 @@ Requires:	python%{pyver}dist(comfy-kitchen)
 Requires:	python%{pyver}dist(comfyui-frontend-package)
 Recommends:	python%{pyver}dist(comfyui-embedded-docs)
 Recommends:	python%{pyver}dist(comfyui-workflow-templates)
+# nodes_glsl.py imports comfy_angle and dlopens EGL/GLESv2.
+Recommends:	python%{pyver}dist(comfy-angle)
 Recommends:	python%{pyver}dist(spandrel)
 Recommends:	python%{pyver}dist(pydantic)
 Recommends:	python%{pyver}dist(pydantic-settings)
